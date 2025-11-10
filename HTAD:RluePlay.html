@@ -302,34 +302,123 @@
             cursor: pointer;
         }
         
-        /* 移动端优化 */
-        @media (min-width: 768px) {
-            .main-content {
-                flex-direction: row;
-                min-height: 60vh;
-            }
-            
-            .player-section {
-                flex: 2;
-                border-right: 1px solid rgba(218, 165, 32, 0.3);
-                border-bottom: none;
-                padding: 25px;
-            }
-            
-            .playlist-section {
-                flex: 1;
-                max-height: 60vh;
-                border-left: 1px solid rgba(218, 165, 32, 0.2);
-            }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .audio-title {
-                font-size: 1.5rem;
-            }
-        }
+     /* 删除或注释掉原来的 @media 查询，替换为以下代码 */
+
+/* 电脑端布局 */
+@media (min-width: 769px) {
+    .main-content {
+        flex-direction: row;
+        min-height: calc(100vh - 160px); /* 填充页面高度 */
+    }
+    
+    .player-section {
+        flex: 2; /* 2/3宽度 */
+        border-right: 1px solid rgba(218, 165, 32, 0.3);
+        border-bottom: none;
+        padding: 30px;
+        min-height: 100%;
+    }
+    
+    .playlist-section {
+        flex: 1; /* 1/3宽度 */
+        max-height: none;
+        height: auto;
+        border-left: 1px solid rgba(218, 165, 32, 0.2);
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .audio-title {
+        font-size: 1.8rem;
+    }
+    
+    .container {
+        max-width: 1200px;
+        min-height: 95vh; /* 电脑端适当高度 */
+    }
+}
+
+/* 手机端布局 */
+@media (max-width: 768px) {
+    body {
+        padding: 8px;
+    }
+    
+    .container {
+        min-height: 98vh; /* 手机端填充高度 */
+    }
+    
+    .main-content {
+        min-height: calc(100vh - 140px); /* 手机端填充计算 */
+    }
+    
+    .player-section {
+        padding: 20px 15px;
+        border-bottom: 1px solid rgba(218, 165, 32, 0.3);
+        min-height: 60vh; /* 手机端播放区域高度 */
+    }
+    
+    .playlist-section {
+        max-height: 35vh; /* 手机端播放列表高度 */
+        flex: 1;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+        padding: 0 10px;
+    }
+    
+    .subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .audio-title {
+        font-size: 1.2rem;
+        min-height: 44px;
+        padding: 8px;
+    }
+    
+    .control-buttons {
+        gap: 8px;
+    }
+    
+    button {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+        min-width: 70px;
+    }
+    
+    #play-pause-btn {
+        padding: 14px 20px;
+        min-width: 80px;
+    }
+}
+
+/* 通用高度调整 */
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1; /* 填充剩余空间 */
+    display: flex;
+}
+
+/* 确保播放列表可以滚动 */
+.playlist-section {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* 手机端流畅滚动 */
+}
+
+/* 播放器区域内容居中 */
+.player-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
     </style>
 </head>
 <body>
